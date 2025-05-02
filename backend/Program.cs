@@ -15,6 +15,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Apply any pending migrations (ensures TravelEntries table exists)
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 app.UseCors();
 app.MapControllers();
 
