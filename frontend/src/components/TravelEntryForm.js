@@ -5,7 +5,7 @@ export default function TravelEntryForm({ entry, onSubmit, onCancel }) {
   const [location, setLocation]       = useState('');
   const [date, setDate]               = useState('');
   const [description, setDescription] = useState('');
-  const [photos, setPhotos]           = useState([]); // array of URLs
+  const [photos, setPhotos]           = useState([]);
 
   // Initialize form fields when editing
   useEffect(() => {

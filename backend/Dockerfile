@@ -4,11 +4,11 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy your project file and restore
+# Copy the project file and restore
 COPY *.csproj ./
 RUN dotnet restore
 
-# Copy the rest of your code and publish
+# Copy the rest of the code and publish
 COPY . .
 RUN dotnet publish -c Release -o /app
 
@@ -23,5 +23,5 @@ COPY --from=build /app .
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
-# The DLL name matches your .csproj (likely "backend.dll")
+# The DLL name matches the .csproj (likely "backend.dll")
 ENTRYPOINT ["dotnet", "backend.dll"]
