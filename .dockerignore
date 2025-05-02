@@ -1,0 +1,18 @@
+# Ignore git data
+.git
+.gitignore
+
+# ↓ Frontend build artifacts ↓
+frontend/node_modules
+frontend/build
+
+# ↓ Backend build artifacts ↓
+backend/bin
+backend/obj
+
+# ↓ Env & logs ↓
+*.env
+*.log
+
+# ↓ Docker Compose overrides ↓
+docker-compose.override.yml

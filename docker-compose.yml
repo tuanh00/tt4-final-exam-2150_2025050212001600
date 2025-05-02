@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: travel-journal-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+    ports:
+      - "5123:8080"    # host 5123 → container 8080
+    networks:
+      - internal_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: travel-journal-app
+    depends_on:
+      - api
+    ports:
+      - "3000:80"      # host 3000 → container 80
+    networks:
+      - internal_network
+
+networks:
+  internal_network:
+    driver: bridge
